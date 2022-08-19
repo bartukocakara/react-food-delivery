@@ -4,14 +4,43 @@ import Avatar from './img/avatar.png'
 import {MdShoppingBasket} from "react-icons/md"
 import {motion} from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { app } from './../firebase.config'
 
 const Header = () => {
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const login = async () => {
+        const response = await signInWithPopup(auth, provider)
+        console.log(response)
+        // .then((result) => {
+        //     console.log(result)
+
+        //   // This gives you a Google Access Token. You can use it to access the Google API.
+        //   const credential = GoogleAuthProvider.credentialFromResult(result);
+        //   const token = credential.accessToken;
+        //   // The signed-in user info.
+        //   const user = result.user;
+        //   // ...
+        // }).catch((error) => {
+        //   // Handle Errors here.
+        //   const errorCode = error.code;
+        //   const errorMessage = error.message;
+        //   // The email of the user's account used.
+        //   const email = error.customData.email;
+        //   // The AuthCredential type that was used.
+        //   const credential = GoogleAuthProvider.credentialFromError(error);
+        //   // ...
+        // });
+    }
+
   return (
     <header className="fixed z-50 w-screen p-6 px-16" >
         {/* desktop & tablet */}
         <div className="hidden md:flex w-full h-full items-center justify-between">
             <div className="flex items-center gap-2">
-                <Link to="" >
+                <Link to={'/'} >
                 {/* img src={Logo} className="w-10 object-cover" alt="logo" /> */}
                 <p className="text-redColor text-xl font-bold">Yemek Sepeti</p>
                 </Link>
@@ -29,7 +58,15 @@ const Header = () => {
                         <p className="text-sm text-white font-semibold">2</p>
                     </div>
                 </div>
-                <motion.img whileTap={{ scale:0.6 }} src={Avatar} className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer" alt="userprofile" />
+                <div className="relative">
+                    <motion.img 
+                        whileTap={{ scale:0.6 }} 
+                        src={Avatar} 
+                        className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer" 
+                        alt="userprofile" 
+                        onClick={login}
+                    />
+                </div>
             </div>
         </div>
         {/* mobile */}
