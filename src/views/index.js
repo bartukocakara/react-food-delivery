@@ -1,2 +1,2 @@
 export { default as CreateItemContainer} from "./CreateItemContainer"
-export { default as MainContainer} from "./MainContainer"
+export { default as HomeContainer} from "./HomeContainer"
