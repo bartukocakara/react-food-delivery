@@ -68,7 +68,7 @@ const Header = () => {
                     <motion.img 
                         whileTap={{ scale:0.6 }} 
                         src={user ?  user.photoURL : Avatar} 
-                        referrerpolicy="no-referrer"
+                        referrerPolicy="no-referrer"
                         className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer rounded-full" 
                         alt="userprofile" 
                         onClick={login}
@@ -78,12 +78,15 @@ const Header = () => {
                             initial={{ opacity: 0, scale: 0.6 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.6 }}
-                        
+
                             className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0">
                             {
                                 user && user.email === 'kocakarabartu@gmail.com' && (
-                                    <Link to={'/create-item'}>
-                                        <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-redColor text-base">New Item <MdAdd /> </p>
+                                    <Link 
+                                        to={'/create-item'}>
+                                        <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-redColor text-base"
+                                            onClick={() => setIsMenu(false)}
+                                        >New Item <MdAdd /> </p>
                                     </Link>
                                 )
                             }
@@ -98,6 +101,12 @@ const Header = () => {
         </div>
         {/* mobile */}
         <div className="flex items-center justify-between md:hidden w-full h-full ">
+        <div className="relative flex items-center justify-center">
+                    <MdShoppingBasket className="text-textColor text-2xl  cursor-pointer" />
+                    <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
+                        <p className="text-sm text-white font-semibold">2</p>
+                    </div>
+                </div>
             <Link to={'/'} >
                 {/* img src={Logo} className="w-10 object-cover" alt="logo" /> */}
                 <p className="text-redColor text-xl font-bold">Yemek Sepeti</p>
@@ -107,7 +116,7 @@ const Header = () => {
                     <motion.img 
                         whileTap={{ scale:0.6 }} 
                         src={user ?  user.photoURL : Avatar} 
-                        referrerpolicy="no-referrer"
+                        referrerPolicy="no-referrer"
                         className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer rounded-full" 
                         alt="userprofile" 
                         onClick={login}
@@ -143,8 +152,8 @@ const Header = () => {
                         )
                     }
                 </div>
-        </div>
-    </header>
+            </div>
+        </header>
   )
 }
 

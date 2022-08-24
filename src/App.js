@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Header, MainContainer } from './components'
-import {CreateItemContainer } from './views'
+import {CreateItemContainer } from './components'
 import { AnimatePresence } from 'framer-motion'
 const App = () => {
   return (
@@ -12,7 +12,6 @@ const App = () => {
             <Routes>
                 <Route path="/*" element={<MainContainer />} />
                 <Route path="/create-item" element={<CreateItemContainer />}/>
-
             </Routes>
         </main>
     </div>
